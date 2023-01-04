@@ -24,6 +24,8 @@ class calculator extends StatefulWidget {
 
 class _calculatorState extends State<calculator> {
   String result = "";
+  bool isEnabled = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -431,11 +433,14 @@ class _calculatorState extends State<calculator> {
                 width: MediaQuery.of(context).size.width / 4,
                 height: MediaQuery.of(context).size.height / 12,
                 child: ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      result = result + ".";
-                    });
-                  },
+                  onPressed: isEnabled
+                      ? () {
+                          setState(() {
+                            result = result + ".";
+                            isEnabled = false;
+                          });
+                        }
+                      : null,
                   child: const Text(
                     ".",
                     style: TextStyle(color: Colors.white, fontSize: 60),
